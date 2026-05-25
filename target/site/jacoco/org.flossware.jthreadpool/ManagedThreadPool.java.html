@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ManagedThreadPool.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JThreadPool</a> &gt; <a href="index.source.html" class="el_package">org.flossware.jthreadpool</a> &gt; <span class="el_source">ManagedThreadPool.java</span></div><h1>ManagedThreadPool.java</h1><pre class="source lang-java linenums">package org.flossware.jthreadpool;
+
+import org.flossware.jthreadpool.ThreadPoolConfig;
+import org.flossware.jthreadpool.ThreadPoolStats;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+/**
+ * Managed thread pool for an application.
+ * Provides isolated thread pool with monitoring and graceful shutdown.
+ * &lt;p&gt;
+ * This implementation creates application-specific thread pools with configurable
+ * core/max sizes, queue capacity, and automatic exception handling. Each thread
+ * is named with the application ID for easy identification in thread dumps.
+ * &lt;p&gt;
+ * Example usage:
+ * {@code
+ * ThreadPoolConfig config = new ThreadPoolConfig(4, 8, 60, 100);
+ * ManagedThreadPool pool = new ManagedThreadPool(&quot;my-app&quot;, config);
+ *
+ * // Submit tasks
+ * pool.submit(() -&gt; doWork());
+ *
+ * // When done
+ * pool.shutdown();
+ * }
+ *
+ * @see org.flossware.jthreadpool.ThreadPoolExecutor
+ * @see ThreadPoolConfig
+ */
+public class ManagedThreadPool implements AutoCloseable {
+
+<span class="fc" id="L36">    private static final Logger logger = LoggerFactory.getLogger(ManagedThreadPool.class);</span>
+
+    private final String applicationId;
+    private final java.util.concurrent.ThreadPoolExecutor executor;
+    private final ThreadFactory threadFactory;
+<span class="fc" id="L41">    private final AtomicInteger threadCounter = new AtomicInteger(0);</span>
+
+    /**
+     * Creates a new managed thread pool for the specified application.
+     * &lt;p&gt;
+     * Threads are created with names in the format: {applicationId}-thread-{N}
+     * and configured with an uncaught exception handler that logs errors.
+     * The rejection policy is CallerRunsPolicy, which runs rejected tasks
+     * in the calling thread.
+     *
+     * @param applicationId the unique identifier for the application
+     * @param config the thread pool configuration specifying core size, max size,
+     *               keep-alive time, and queue capacity
+     * @throws NullPointerException if applicationId or config is null
+     */
+<span class="fc" id="L56">    public ManagedThreadPool(String applicationId, ThreadPoolConfig config) {</span>
+<span class="fc" id="L57">        this.applicationId = applicationId;</span>
+
+<span class="fc" id="L59">        this.threadFactory = r -&gt; {</span>
+<span class="fc" id="L60">            Thread t = new Thread(r, applicationId + &quot;-thread-&quot; + threadCounter.incrementAndGet());</span>
+<span class="fc" id="L61">            t.setDaemon(false);</span>
+<span class="fc" id="L62">            t.setUncaughtExceptionHandler((thread, throwable) -&gt; {</span>
+<span class="fc" id="L63">                logger.error(&quot;[{}] Uncaught exception in thread {}&quot;, applicationId, thread.getName(), throwable);</span>
+<span class="fc" id="L64">            });</span>
+<span class="fc" id="L65">            return t;</span>
+        };
+
+<span class="fc" id="L68">        this.executor = new java.util.concurrent.ThreadPoolExecutor(</span>
+<span class="fc" id="L69">                config.getCorePoolSize(),</span>
+<span class="fc" id="L70">                config.getMaxPoolSize(),</span>
+<span class="fc" id="L71">                config.getKeepAliveTimeSeconds(),</span>
+                TimeUnit.SECONDS,
+<span class="fc" id="L73">                new LinkedBlockingQueue&lt;&gt;(config.getQueueCapacity()),</span>
+                threadFactory,
+                new ThreadPoolExecutor.CallerRunsPolicy()
+        );
+
+<span class="fc" id="L78">        logger.info(&quot;[{}] Created thread pool: core={}, max={}, queue={}&quot;,</span>
+<span class="fc" id="L79">                applicationId, config.getCorePoolSize(), config.getMaxPoolSize(), config.getQueueCapacity());</span>
+<span class="fc" id="L80">    }</span>
+
+    /**
+     * Submits a Runnable task for execution.
+     *
+     * @param task the task to submit
+     * @return a Future representing pending completion of the task
+     * @throws RejectedExecutionException if task cannot be scheduled for execution
+     * @throws NullPointerException if task is null
+     */
+    
+    public Future&lt;?&gt; submit(Runnable task) {
+<span class="fc" id="L92">        return executor.submit(task);</span>
+    }
+
+    /**
+     * Submits a value-returning task for execution.
+     *
+     * @param &lt;T&gt; the type of the task's result
+     * @param task the task to submit
+     * @return a Future representing pending completion of the task
+     * @throws RejectedExecutionException if task cannot be scheduled for execution
+     * @throws NullPointerException if task is null
+     */
+    
+    public &lt;T&gt; Future&lt;T&gt; submit(Callable&lt;T&gt; task) {
+<span class="fc" id="L106">        return executor.submit(task);</span>
+    }
+
+    /**
+     * Executes the given command at some time in the future.
+     *
+     * @param command the runnable task
+     * @throws RejectedExecutionException if this task cannot be accepted for execution
+     * @throws NullPointerException if command is null
+     */
+    
+    public void execute(Runnable command) {
+<span class="fc" id="L118">        executor.execute(command);</span>
+<span class="fc" id="L119">    }</span>
+
+    /**
+     * Initiates an orderly shutdown in which previously submitted tasks are executed,
+     * but no new tasks will be accepted. Waits up to 30 seconds for termination,
+     * then forces shutdown if necessary.
+     * &lt;p&gt;
+     * This method does not wait for actively executing tasks to terminate.
+     * Use {@link #isTerminated()} to check completion.
+     */
+    
+    public void shutdown() {
+<span class="fc" id="L131">        logger.info(&quot;[{}] Shutting down thread pool&quot;, applicationId);</span>
+<span class="fc" id="L132">        executor.shutdown();</span>
+        try {
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            if (!executor.awaitTermination(30, TimeUnit.SECONDS)) {</span>
+<span class="fc" id="L135">                logger.warn(&quot;[{}] Thread pool did not terminate in 30 seconds, forcing shutdown&quot;, applicationId);</span>
+<span class="fc" id="L136">                executor.shutdownNow();</span>
+            }
+<span class="fc" id="L138">        } catch (InterruptedException e) {</span>
+<span class="fc" id="L139">            logger.warn(&quot;[{}] Interrupted while waiting for thread pool shutdown&quot;, applicationId);</span>
+<span class="fc" id="L140">            executor.shutdownNow();</span>
+<span class="fc" id="L141">            Thread.currentThread().interrupt();</span>
+<span class="fc" id="L142">        }</span>
+<span class="fc" id="L143">    }</span>
+
+    /**
+     * Attempts to stop all actively executing tasks and halts the processing
+     * of waiting tasks.
+     * This method does not wait for actively executing tasks to terminate.
+     */
+    
+    public void shutdownNow() {
+<span class="fc" id="L152">        logger.info(&quot;[{}] Force shutting down thread pool&quot;, applicationId);</span>
+<span class="fc" id="L153">        executor.shutdownNow();</span>
+<span class="fc" id="L154">    }</span>
+
+    /**
+     * Returns true if this executor has been shut down.
+     *
+     * @return true if this executor has been shut down
+     */
+    
+    public boolean isShutdown() {
+<span class="fc" id="L163">        return executor.isShutdown();</span>
+    }
+
+    /**
+     * Returns true if all tasks have completed following shut down.
+     *
+     * @return true if all tasks have completed following shut down
+     */
+    
+    public boolean isTerminated() {
+<span class="fc" id="L173">        return executor.isTerminated();</span>
+    }
+
+    /**
+     * Returns current statistics for this thread pool, including active thread count,
+     * completed task count, queue size, and pool size information.
+     *
+     * @return a snapshot of current thread pool statistics
+     */
+    
+    public ThreadPoolStats getStats() {
+<span class="fc" id="L184">        return new ThreadPoolStats(</span>
+<span class="fc" id="L185">                executor.getActiveCount(),</span>
+<span class="fc" id="L186">                executor.getCompletedTaskCount(),</span>
+<span class="fc" id="L187">                executor.getQueue().size(),</span>
+<span class="fc" id="L188">                executor.getPoolSize(),</span>
+<span class="fc" id="L189">                executor.getCorePoolSize(),</span>
+<span class="fc" id="L190">                executor.getMaximumPoolSize()</span>
+        );
+    }
+
+    /**
+     * Returns the application ID associated with this thread pool.
+     *
+     * @return the application ID
+     */
+    public String getApplicationId() {
+<span class="fc" id="L200">        return applicationId;</span>
+    }
+
+    @Override
+    public void close() {
+<span class="fc" id="L205">        shutdown();</span>
+<span class="fc" id="L206">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

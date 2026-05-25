@@ -1,1 +1,7 @@
 org/flossware/jthreadpool/ManagedThreadPoolTest.class
+org/flossware/jthreadpool/ManagedThreadPoolEdgeCasesTest.class
+org/flossware/jthreadpool/ThreadPoolConfigTest.class
+org/flossware/jthreadpool/ThreadPoolStatsTest.class
+org/flossware/jthreadpool/ManagedThreadPoolEdgeCasesTest$2.class
+org/flossware/jthreadpool/ManagedThreadPoolUncaughtExceptionTest.class
+org/flossware/jthreadpool/ManagedThreadPoolEdgeCasesTest$1.class

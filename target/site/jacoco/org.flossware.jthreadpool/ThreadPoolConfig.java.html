@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadPoolConfig.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JThreadPool</a> &gt; <a href="index.source.html" class="el_package">org.flossware.jthreadpool</a> &gt; <span class="el_source">ThreadPoolConfig.java</span></div><h1>ThreadPoolConfig.java</h1><pre class="source lang-java linenums">package org.flossware.jthreadpool;
+
+/**
+ * Configuration for application thread pool.
+ * Defines core pool size, maximum pool size, keep-alive time, and queue capacity.
+ *
+ * &lt;p&gt;Example usage:&lt;/p&gt;
+ * &lt;pre&gt;{@code
+ * ThreadPoolConfig config = ThreadPoolConfig.builder()
+ *     .corePoolSize(5)
+ *     .maxPoolSize(20)
+ *     .keepAliveTimeSeconds(120)
+ *     .queueCapacity(200)
+ *     .build();
+ *
+ * // Or use default configuration
+ * ThreadPoolConfig defaults = ThreadPoolConfig.defaultConfig();
+ * // core=2, max=10, keepAlive=60s, queue=100
+ * }&lt;/pre&gt;
+ *
+ * @see ThreadPoolExecutor
+ * @see ThreadPoolStats
+ */
+public class ThreadPoolConfig {
+    private final int corePoolSize;
+    private final int maxPoolSize;
+    private final long keepAliveTimeSeconds;
+    private final int queueCapacity;
+
+<span class="fc" id="L30">    private ThreadPoolConfig(Builder builder) {</span>
+<span class="fc" id="L31">        this.corePoolSize = builder.corePoolSize;</span>
+<span class="fc" id="L32">        this.maxPoolSize = builder.maxPoolSize;</span>
+<span class="fc" id="L33">        this.keepAliveTimeSeconds = builder.keepAliveTimeSeconds;</span>
+<span class="fc" id="L34">        this.queueCapacity = builder.queueCapacity;</span>
+<span class="fc" id="L35">    }</span>
+
+    /**
+     * Returns the minimum number of threads to keep in the pool.
+     *
+     * @return the core pool size
+     */
+    public int getCorePoolSize() {
+<span class="fc" id="L43">        return corePoolSize;</span>
+    }
+
+    /**
+     * Returns the maximum number of threads allowed in the pool.
+     *
+     * @return the maximum pool size
+     */
+    public int getMaxPoolSize() {
+<span class="fc" id="L52">        return maxPoolSize;</span>
+    }
+
+    /**
+     * Returns the time that excess idle threads wait before terminating.
+     *
+     * @return the keep-alive time in seconds
+     */
+    public long getKeepAliveTimeSeconds() {
+<span class="fc" id="L61">        return keepAliveTimeSeconds;</span>
+    }
+
+    /**
+     * Returns the maximum number of tasks that can be queued for execution.
+     *
+     * @return the queue capacity
+     */
+    public int getQueueCapacity() {
+<span class="fc" id="L70">        return queueCapacity;</span>
+    }
+
+    /**
+     * Creates a thread pool configuration with default settings.
+     * Defaults: core=2, max=10, keepAlive=60s, queue=100
+     *
+     * @return a configuration with default values
+     */
+    public static ThreadPoolConfig defaultConfig() {
+<span class="fc" id="L80">        return builder().build();</span>
+    }
+
+    /**
+     * Creates a new builder for constructing thread pool configurations.
+     *
+     * @return a new builder instance with default values
+     */
+    public static Builder builder() {
+<span class="fc" id="L89">        return new Builder();</span>
+    }
+
+    /**
+     * Builder for constructing ThreadPoolConfig instances.
+     * All properties have default values.
+     */
+<span class="fc" id="L96">    public static class Builder {</span>
+<span class="fc" id="L97">        private int corePoolSize = 2;</span>
+<span class="fc" id="L98">        private int maxPoolSize = 10;</span>
+<span class="fc" id="L99">        private long keepAliveTimeSeconds = 60;</span>
+<span class="fc" id="L100">        private int queueCapacity = 100;</span>
+
+        /**
+         * Sets the core pool size.
+         *
+         * @param corePoolSize the minimum number of threads to keep in the pool
+         * @return this builder
+         */
+        public Builder corePoolSize(int corePoolSize) {
+<span class="fc" id="L109">            this.corePoolSize = corePoolSize;</span>
+<span class="fc" id="L110">            return this;</span>
+        }
+
+        /**
+         * Sets the maximum pool size.
+         *
+         * @param maxPoolSize the maximum number of threads allowed in the pool
+         * @return this builder
+         */
+        public Builder maxPoolSize(int maxPoolSize) {
+<span class="fc" id="L120">            this.maxPoolSize = maxPoolSize;</span>
+<span class="fc" id="L121">            return this;</span>
+        }
+
+        /**
+         * Sets the keep-alive time for excess idle threads.
+         *
+         * @param keepAliveTimeSeconds the time in seconds that excess idle threads wait before terminating
+         * @return this builder
+         */
+        public Builder keepAliveTimeSeconds(long keepAliveTimeSeconds) {
+<span class="fc" id="L131">            this.keepAliveTimeSeconds = keepAliveTimeSeconds;</span>
+<span class="fc" id="L132">            return this;</span>
+        }
+
+        /**
+         * Sets the task queue capacity.
+         *
+         * @param queueCapacity the maximum number of tasks that can be queued
+         * @return this builder
+         */
+        public Builder queueCapacity(int queueCapacity) {
+<span class="fc" id="L142">            this.queueCapacity = queueCapacity;</span>
+<span class="fc" id="L143">            return this;</span>
+        }
+
+        /**
+         * Builds the ThreadPoolConfig instance.
+         *
+         * @return a new ThreadPoolConfig with the configured values
+         * @throws IllegalArgumentException if any parameter is invalid
+         */
+        public ThreadPoolConfig build() {
+<span class="fc bfc" id="L153" title="All 2 branches covered.">            if (corePoolSize &lt; 0) {</span>
+<span class="fc" id="L154">                throw new IllegalArgumentException(&quot;corePoolSize must be &gt;= 0, got: &quot; + corePoolSize);</span>
+            }
+<span class="fc bfc" id="L156" title="All 2 branches covered.">            if (maxPoolSize &lt;= 0) {</span>
+<span class="fc" id="L157">                throw new IllegalArgumentException(&quot;maxPoolSize must be &gt; 0, got: &quot; + maxPoolSize);</span>
+            }
+<span class="fc bfc" id="L159" title="All 2 branches covered.">            if (maxPoolSize &lt; corePoolSize) {</span>
+<span class="fc" id="L160">                throw new IllegalArgumentException(</span>
+                    &quot;maxPoolSize (&quot; + maxPoolSize + &quot;) must be &gt;= corePoolSize (&quot; + corePoolSize + &quot;)&quot;);
+            }
+<span class="fc bfc" id="L163" title="All 2 branches covered.">            if (keepAliveTimeSeconds &lt; 0) {</span>
+<span class="fc" id="L164">                throw new IllegalArgumentException(&quot;keepAliveTimeSeconds must be &gt;= 0, got: &quot; + keepAliveTimeSeconds);</span>
+            }
+<span class="fc bfc" id="L166" title="All 2 branches covered.">            if (queueCapacity &lt; 0) {</span>
+<span class="fc" id="L167">                throw new IllegalArgumentException(&quot;queueCapacity must be &gt;= 0, got: &quot; + queueCapacity);</span>
+            }
+<span class="fc" id="L169">            return new ThreadPoolConfig(this);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

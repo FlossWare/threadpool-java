@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThreadPoolStats.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JThreadPool</a> &gt; <a href="index.source.html" class="el_package">org.flossware.jthreadpool</a> &gt; <span class="el_source">ThreadPoolStats.java</span></div><h1>ThreadPoolStats.java</h1><pre class="source lang-java linenums">package org.flossware.jthreadpool;
+
+/**
+ * Snapshot of thread pool statistics at a point in time.
+ * Captures active threads, completed tasks, queue depth, and pool sizing.
+ *
+ * &lt;p&gt;Example usage:&lt;/p&gt;
+ * &lt;pre&gt;{@code
+ * ThreadPoolExecutor executor = context.getThreadPool();
+ * ThreadPoolStats stats = executor.getStats();
+ *
+ * System.out.println(&quot;Active threads: &quot; + stats.getActiveThreads());
+ * System.out.println(&quot;Completed tasks: &quot; + stats.getCompletedTasks());
+ * System.out.println(&quot;Queued tasks: &quot; + stats.getQueuedTasks());
+ * System.out.println(&quot;Pool size: &quot; + stats.getPoolSize() +
+ *                   &quot; (core=&quot; + stats.getCorePoolSize() +
+ *                   &quot;, max=&quot; + stats.getMaximumPoolSize() + &quot;)&quot;);
+ * }&lt;/pre&gt;
+ *
+ * @see ThreadPoolExecutor
+ * @see ThreadPoolConfig
+ */
+public class ThreadPoolStats {
+    private final int activeThreads;
+    private final long completedTasks;
+    private final int queuedTasks;
+    private final int poolSize;
+    private final int corePoolSize;
+    private final int maximumPoolSize;
+
+    /**
+     * Constructs a new thread pool statistics snapshot.
+     *
+     * @param activeThreads the number of threads actively executing tasks
+     * @param completedTasks the total number of completed tasks
+     * @param queuedTasks the number of tasks waiting in the queue
+     * @param poolSize the current number of threads in the pool
+     * @param corePoolSize the core pool size configuration
+     * @param maximumPoolSize the maximum pool size configuration
+     */
+    public ThreadPoolStats(int activeThreads, long completedTasks, int queuedTasks,
+<span class="fc" id="L42">                          int poolSize, int corePoolSize, int maximumPoolSize) {</span>
+<span class="fc" id="L43">        this.activeThreads = activeThreads;</span>
+<span class="fc" id="L44">        this.completedTasks = completedTasks;</span>
+<span class="fc" id="L45">        this.queuedTasks = queuedTasks;</span>
+<span class="fc" id="L46">        this.poolSize = poolSize;</span>
+<span class="fc" id="L47">        this.corePoolSize = corePoolSize;</span>
+<span class="fc" id="L48">        this.maximumPoolSize = maximumPoolSize;</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Returns the number of threads currently executing tasks.
+     *
+     * @return the active thread count
+     */
+    public int getActiveThreads() {
+<span class="fc" id="L57">        return activeThreads;</span>
+    }
+
+    /**
+     * Returns the total number of tasks that have completed execution.
+     *
+     * @return the completed task count
+     */
+    public long getCompletedTasks() {
+<span class="fc" id="L66">        return completedTasks;</span>
+    }
+
+    /**
+     * Returns the number of tasks waiting in the queue for execution.
+     *
+     * @return the queued task count
+     */
+    public int getQueuedTasks() {
+<span class="fc" id="L75">        return queuedTasks;</span>
+    }
+
+    /**
+     * Returns the current number of threads in the pool.
+     *
+     * @return the pool size
+     */
+    public int getPoolSize() {
+<span class="fc" id="L84">        return poolSize;</span>
+    }
+
+    /**
+     * Returns the configured core pool size.
+     *
+     * @return the core pool size
+     */
+    public int getCorePoolSize() {
+<span class="fc" id="L93">        return corePoolSize;</span>
+    }
+
+    /**
+     * Returns the configured maximum pool size.
+     *
+     * @return the maximum pool size
+     */
+    public int getMaximumPoolSize() {
+<span class="fc" id="L102">        return maximumPoolSize;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L107">        return String.format(&quot;ThreadPoolStats{active=%d, completed=%d, queued=%d, &quot; +</span>
+                           &quot;poolSize=%d, core=%d, max=%d}&quot;,
+<span class="fc" id="L109">                activeThreads, completedTasks, queuedTasks, poolSize, corePoolSize, maximumPoolSize);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.146" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="1.165" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -55,54 +55,46 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testExecute" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.004">
-    <system-out><![CDATA[19:02:25.430 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.432 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testUncaughtException" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.51">
+    <system-out><![CDATA[19:02:24.456 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [exception-test] Created thread pool: core=2, max=4, queue=100
+19:02:24.676 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [exception-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testGetStats" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.004">
-    <system-out><![CDATA[19:02:25.435 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.437 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testThreadCounter" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.106">
+    <system-out><![CDATA[19:02:24.781 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [counter-test] Created thread pool: core=3, max=3, queue=100
+19:02:24.784 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [counter-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testSubmitCallable" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.006">
-    <system-out><![CDATA[19:02:25.440 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.444 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testNonDaemonThreads" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.105">
+    <system-out><![CDATA[19:02:24.888 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [daemon-test] Created thread pool: core=1, max=1, queue=100
+19:02:24.891 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [daemon-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testThreadNaming" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.004">
-    <system-out><![CDATA[19:02:25.447 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [naming-test] Created thread pool: core=2, max=4, queue=100
-19:02:25.448 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [naming-test] Shutting down thread pool
+  <testcase name="testCloseMethod" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.003">
+    <system-out><![CDATA[19:02:24.994 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [close-test] Created thread pool: core=1, max=1, queue=100
+19:02:24.995 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [close-test] Shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testAutoCloseable" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.003">
-    <system-out><![CDATA[19:02:25.452 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [auto-close-test] Created thread pool: core=2, max=4, queue=100
-19:02:25.453 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [auto-close-test] Shutting down thread pool
+  <testcase name="testStatsWithQueuedTasks" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.205">
+    <system-out><![CDATA[19:02:24.998 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [queue-test] Created thread pool: core=1, max=1, queue=10
+19:02:25.100 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [queue-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testSubmitRunnable" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.003">
-    <system-out><![CDATA[19:02:25.455 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.456 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testShutdownInterrupted" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.007">
+    <system-out><![CDATA[19:02:25.205 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [interrupt-test] Created thread pool: core=1, max=1, queue=100
+19:02:25.209 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [interrupt-test] Shutting down thread pool
+19:02:25.209 [main] WARN org.flossware.jthreadpool.ManagedThreadPool -- [interrupt-test] Interrupted while waiting for thread pool shutdown
 ]]></system-out>
   </testcase>
-  <testcase name="testShutdown" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.103">
-    <system-out><![CDATA[19:02:25.458 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.459 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testStatsWithCompletedTasks" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.205">
+    <system-out><![CDATA[19:02:25.212 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [completed-test] Created thread pool: core=2, max=2, queue=100
+19:02:25.315 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [completed-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
-  <testcase name="testCreatePool" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.003">
-    <system-out><![CDATA[19:02:25.563 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=10
-19:02:25.565 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
-]]></system-out>
-  </testcase>
-  <testcase name="testShutdownNow" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.003">
-    <system-out><![CDATA[19:02:25.567 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.568 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Force shutting down thread pool
-]]></system-out>
-  </testcase>
-  <testcase name="testMultipleTasks" classname="org.flossware.jthreadpool.ManagedThreadPoolTest" time="0.004">
-    <system-out><![CDATA[19:02:25.571 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Created thread pool: core=2, max=4, queue=100
-19:02:25.573 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [test-app] Shutting down thread pool
+  <testcase name="testShutdownTimeout" classname="org.flossware.jthreadpool.ManagedThreadPoolEdgeCasesTest" time="0.005">
+    <system-out><![CDATA[19:02:25.419 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [timeout-test] Created thread pool: core=1, max=1, queue=100
+19:02:25.422 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [timeout-test] Shutting down thread pool
+19:02:25.422 [main] WARN org.flossware.jthreadpool.ManagedThreadPool -- [timeout-test] Thread pool did not terminate in 30 seconds, forcing shutdown
 ]]></system-out>
   </testcase>
 </testsuite>
