@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.flossware.jthreadpool.ManagedThreadPoolUncaughtExceptionTest" time="0.113" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="org.flossware.jthreadpool.ManagedThreadPoolUncaughtExceptionTest" time="0.116" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="21"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -13,7 +13,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/home/sfloess/.sdkman/candidates/java/21.0.11-tem/lib"/>
-    <property name="sun.java.command" value="/home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire/surefirebooter-20260524190221701_3.jar /home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire 2026-05-24T19-02-21_504-jvmRun1 surefire-20260524190221701_1tmp surefire_0-20260524190221701_2tmp"/>
+    <property name="sun.java.command" value="/home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire/surefirebooter-20260526175016190_3.jar /home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire 2026-05-26T17-50-16_073-jvmRun1 surefire-20260526175016190_1tmp surefire_0-20260526175016190_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/sfloess/Development/github/FlossWare/jthreadpool/target/test-classes:/home/sfloess/Development/github/FlossWare/jthreadpool/target/classes:/home/sfloess/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar:/home/sfloess/.m2/repository/org/junit/jupiter/junit-jupiter/6.1.0/junit-jupiter-6.1.0.jar:/home/sfloess/.m2/repository/org/junit/jupiter/junit-jupiter-api/6.1.0/junit-jupiter-api-6.1.0.jar:/home/sfloess/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/sfloess/.m2/repository/org/junit/platform/junit-platform-commons/6.1.0/junit-platform-commons-6.1.0.jar:/home/sfloess/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/sfloess/.m2/repository/org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar:/home/sfloess/.m2/repository/org/junit/jupiter/junit-jupiter-params/6.1.0/junit-jupiter-params-6.1.0.jar:/home/sfloess/.m2/repository/org/junit/jupiter/junit-jupiter-engine/6.1.0/junit-jupiter-engine-6.1.0.jar:/home/sfloess/.m2/repository/org/junit/platform/junit-platform-engine/6.1.0/junit-platform-engine-6.1.0.jar:/home/sfloess/.m2/repository/ch/qos/logback/logback-classic/1.4.11/logback-classic-1.4.11.jar:/home/sfloess/.m2/repository/ch/qos/logback/logback-core/1.4.11/logback-core-1.4.11.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -28,7 +28,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire/surefirebooter-20260524190221701_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/sfloess/Development/github/FlossWare/jthreadpool/target/surefire/surefirebooter-20260526175016190_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.11+10-LTS"/>
     <property name="user.name" value="sfloess"/>
@@ -55,9 +55,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testUncaughtExceptionHandler" classname="org.flossware.jthreadpool.ManagedThreadPoolUncaughtExceptionTest" time="0.11">
-    <system-out><![CDATA[19:02:25.579 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Created thread pool: core=1, max=1, queue=100
-19:02:25.580 [main] ERROR org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Uncaught exception in thread uncaught-handler-test-thread-1
+  <testcase name="testUncaughtExceptionHandler" classname="org.flossware.jthreadpool.ManagedThreadPoolUncaughtExceptionTest" time="0.113">
+    <system-out><![CDATA[17:50:19.569 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Created thread pool: core=1, max=1, queue=100
+17:50:19.570 [main] ERROR org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Uncaught exception in thread uncaught-handler-test-thread-1
 java.lang.RuntimeException: Test uncaught exception
 	at org.flossware.jthreadpool.ManagedThreadPoolUncaughtExceptionTest.testUncaughtExceptionHandler(ManagedThreadPoolUncaughtExceptionTest.java:59)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
@@ -138,7 +138,7 @@ java.lang.RuntimeException: Test uncaught exception
 	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
 	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
-19:02:25.587 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Force shutting down thread pool
+17:50:19.580 [main] INFO org.flossware.jthreadpool.ManagedThreadPool -- [uncaught-handler-test] Force shutting down thread pool
 ]]></system-out>
   </testcase>
 </testsuite>

@@ -1,4 +1,4 @@
-package org.flossware.jthreadpool;
+package org.flossware.threadpool;
 
 /**
  * Configuration for application thread pool.

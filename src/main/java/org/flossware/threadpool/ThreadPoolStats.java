@@ -1,4 +1,4 @@
-package org.flossware.jthreadpool;
+package org.flossware.threadpool;
 
 /**
  * Snapshot of thread pool statistics at a point in time.

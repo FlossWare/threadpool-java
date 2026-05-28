@@ -1,4 +1,4 @@
-package org.flossware.jthreadpool;
+package org.flossware.threadpool;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;

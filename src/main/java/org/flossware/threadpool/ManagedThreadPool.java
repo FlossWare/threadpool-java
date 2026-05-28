@@ -1,7 +1,7 @@
-package org.flossware.jthreadpool;
+package org.flossware.threadpool;
 
-import org.flossware.jthreadpool.ThreadPoolConfig;
-import org.flossware.jthreadpool.ThreadPoolStats;
+import org.flossware.threadpool.ThreadPoolConfig;
+import org.flossware.threadpool.ThreadPoolStats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

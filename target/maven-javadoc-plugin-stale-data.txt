@@ -21,31 +21,31 @@
 'UTF-8'
 -Xdoclint:none
 -doctitle
-'JThreadPool 1.0 API'
+'JThreadPool 1.1 API'
 -use
 -version
 -windowtitle
-'JThreadPool 1.0 API'
+'JThreadPool 1.1 API'
 org.flossware.jthreadpool
 /home/sfloess/.m2/repository/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar = 1693757672000
 /home/sfloess/Development/github/FlossWare/jthreadpool/src/main/java = 1779600574065
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/generated-sources/annotations = 1779667320832
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/element-list = 1779667349320
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/overview-tree.html = 1779667349381
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/allclasses-index.html = 1779667349407
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/allpackages-index.html = 1779667349410
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/module-search-index.js = 1779667349411
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/package-search-index.js = 1779667349411
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/type-search-index.js = 1779667349413
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/member-search-index.js = 1779667349413
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/tag-search-index.js = 1779667349414
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/index-all.html = 1779667349444
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search.html = 1779667349446
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/index.html = 1779667349448
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/help-doc.html = 1779667349453
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/stylesheet.css = 1779667349456
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/script.js = 1779667349457
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/copy.svg = 1779667349457
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/link.svg = 1779667349458
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search.js = 1779667349461
-/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search-page.js = 1779667349462
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/generated-sources/annotations = 1779835813755
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/element-list = 1779835823720
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/overview-tree.html = 1779835823783
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/allclasses-index.html = 1779835823807
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/allpackages-index.html = 1779835823810
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/module-search-index.js = 1779835823811
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/package-search-index.js = 1779835823811
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/type-search-index.js = 1779835823812
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/member-search-index.js = 1779835823812
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/tag-search-index.js = 1779835823813
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/index-all.html = 1779835823840
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search.html = 1779835823843
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/index.html = 1779835823845
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/help-doc.html = 1779835823851
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/stylesheet.css = 1779835823853
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/script.js = 1779835823854
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/copy.svg = 1779835823855
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/link.svg = 1779835823855
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search.js = 1779835823858
+/home/sfloess/Development/github/FlossWare/jthreadpool/target/apidocs/search-page.js = 1779835823860

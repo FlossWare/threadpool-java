@@ -1,6 +1,6 @@
 # JThreadPool
 
-[![Maven Central](https://img.shields.io/maven-central/v/org.flossware/jthreadpool.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/org.flossware/jthreadpool)
+[![Maven Central](https://img.shields.io/maven-central/v/org.flossware/threadpool-java.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/org.flossware/threadpool-java)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Managed thread pools with monitoring and graceful shutdown for Java applications.
@@ -22,7 +22,7 @@ Managed thread pools with monitoring and graceful shutdown for Java applications
 ```xml
 <dependency>
     <groupId>org.flossware</groupId>
-    <artifactId>jthreadpool</artifactId>
+    <artifactId>threadpool-java</artifactId>
     <version>1.0</version>
 </dependency>
 ```
@@ -30,7 +30,7 @@ Managed thread pools with monitoring and graceful shutdown for Java applications
 ### Gradle
 
 ```gradle
-implementation 'org.flossware:jthreadpool:1.0'
+implementation 'org.flossware:threadpool-java:1.0'
 ```
 
 ## Quick Start
@@ -38,7 +38,7 @@ implementation 'org.flossware:jthreadpool:1.0'
 ### Basic Usage
 
 ```java
-import org.flossware.jthreadpool.*;
+import org.flossware.threadpool-java.*;
 
 // Create thread pool configuration
 ThreadPoolConfig config = ThreadPoolConfig.builder()
@@ -255,9 +255,9 @@ Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for gui
 
 ## Links
 
-- [GitHub Repository](https://github.com/FlossWare/jthreadpool)
-- [Issue Tracker](https://github.com/FlossWare/jthreadpool/issues)
-- [Javadoc](https://javadoc.io/doc/org.flossware/jthreadpool)
+- [GitHub Repository](https://github.com/FlossWare/threadpool-java)
+- [Issue Tracker](https://github.com/FlossWare/threadpool-java/issues)
+- [Javadoc](https://javadoc.io/doc/org.flossware/threadpool-java)
 
 ## Changelog
 
